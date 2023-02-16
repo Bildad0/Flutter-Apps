@@ -19,9 +19,6 @@ Flutter run
     return MaterialApp(
       title: 'Personal Expenses',
       theme: ThemeData(
-        //add fonts later.
-        //fontFamily: 'Quicksand',
-
         secondaryHeaderColor: const Color.fromARGB(255, 87, 157, 90),
         primarySwatch: Colors.purple,
         backgroundColor: Colors.transparent,
