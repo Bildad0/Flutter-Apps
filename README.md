@@ -1,16 +1,34 @@
-# whatsappclone
+# Flutter Apps
 
-A new Flutter project.
+A collection of Flutter Apps
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To run different app, comment out from main.dart
 
-A few resources to get you started if this is your first Flutter project:
+## Home:const HomePage(title: 'Personal Expenses App')
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Then run
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```Bash:
+Flutter run
+```
+
+```Flutter
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Personal Expenses',
+      theme: ThemeData(
+        //add fonts later.
+        //fontFamily: 'Quicksand',
+
+        secondaryHeaderColor: const Color.fromARGB(255, 87, 157, 90),
+        primarySwatch: Colors.purple,
+        backgroundColor: Colors.transparent,
+        errorColor: Colors.red,
+      ),
+      home: const HomePage(title: 'Personal Expenses App'),
+      //home: const MyHomePage(title: 'WhatsApp'),
+    );
+  }
+```
