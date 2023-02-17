@@ -36,8 +36,8 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.transparent,
         errorColor: Colors.red,
       ),
-      home: const HomePage(title: 'Personal Expenses App'),
-      //home: const MyHomePage(title: 'WhatsApp'),
+      //home: const HomePage(title: 'Personal Expenses App'),
+      home: const MyHomePage(title: 'WhatsApp'),
     );
   }
 }
