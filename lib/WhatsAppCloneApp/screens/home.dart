@@ -1,5 +1,10 @@
+// ignore_for_file: unrelated_type_equality_checks
+
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+import '../models/conversationmodel.dart';
+import 'conversation_list.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -10,6 +15,25 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final List<Conversation> userConversations = [];
+
+  //add latest conversation
+  // List<Conversation> get _recentConversations {
+  //   return userConversations.where((element) {
+  //     return element.time.isAfter(
+  //       DateTime.now().subtract(
+  //         const Duration(seconds: 1),
+  //       ),
+  //     );
+  //   }).toList();
+  // }
+
+  void _deleteConversation(String id) {
+    setState(() {
+      userConversations.removeWhere((element) => element.id == id);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -60,12 +84,14 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
-          body: const TabBarView(
+          body: TabBarView(
             children: [
-              Text("Community"),
-              Text("Chats"),
-              Text("Status"),
-              Text("Calls"),
+              const Text("Community"),
+              ConversationList(
+                deleteConvo: _deleteConversation,
+              ),
+              const Text("Status"),
+              const Text("Calls"),
             ],
           ),
           floatingActionButton: FloatingActionButton(
@@ -79,19 +105,5 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
-  }
-}
-
-class LandingPage extends StatefulWidget {
-  const LandingPage({super.key});
-
-  @override
-  State<LandingPage> createState() => _LandingPageState();
-}
-
-class _LandingPageState extends State<LandingPage> {
-  @override
-  Widget build(BuildContext context) {
-    return const Center(child: Text("Hi"));
   }
 }

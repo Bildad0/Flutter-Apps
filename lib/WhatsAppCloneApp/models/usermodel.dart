@@ -2,6 +2,7 @@ import './messagemodel.dart';
 
 class User {
   int id;
+  String name;
   String userName;
   int phoneNumber;
   String imageUrl;
@@ -10,6 +11,7 @@ class User {
   List<Message> messages;
   User({
     required this.id,
+    required this.name,
     required this.userName,
     required this.phoneNumber,
     required this.imageUrl,
@@ -20,6 +22,7 @@ class User {
 
   fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    name = json['name'];
     userName = json['username'];
     phoneNumber = json['phonenumber'];
     imageUrl = json['imageUrl'];
@@ -31,6 +34,7 @@ class User {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
+    data['name'] = name;
     data['username'] = userName;
     data['phonenumber'] = phoneNumber;
     data['imageUrl'] = imageUrl;
