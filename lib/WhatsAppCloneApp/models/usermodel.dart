@@ -1,3 +1,5 @@
+import 'package:whatsappclone/WhatsAppCloneApp/models/status_model.dart';
+
 import './messagemodel.dart';
 
 class User {
@@ -7,8 +9,9 @@ class User {
   int phoneNumber;
   String imageUrl;
   String about;
-  String status;
+  String status; //this is status for wether the user is online or not
   List<Message> messages;
+  List<Status> statuses;
   User({
     required this.id,
     required this.name,
@@ -18,6 +21,7 @@ class User {
     required this.about,
     required this.status,
     required this.messages,
+    required this.statuses,
   });
 
   fromJson(Map<String, dynamic> json) {
@@ -29,6 +33,7 @@ class User {
     about = json['about'];
     status = json['status'];
     messages = json['messages'];
+    statuses = json['statuses'];
   }
 
   Map<String, dynamic> toJson() {
@@ -41,6 +46,7 @@ class User {
     data['about'] = about;
     data['status'] = status;
     data['messages'] = messages;
+    data['statuses'] = statuses;
     return data;
   }
 }

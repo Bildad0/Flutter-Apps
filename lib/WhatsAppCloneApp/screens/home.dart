@@ -2,9 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import '../widgets/group_list.dart';
 
 import '../models/conversationmodel.dart';
-import 'conversation_list.dart';
+import '../models/usermodel.dart';
+import '../widgets/conversation_list.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -34,6 +36,14 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  Object getContact() {
+    return {};
+  }
+
+  void _startConversation(User user) {
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -41,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
         animationDuration: const Duration(
           milliseconds: 1500,
         ),
-        initialIndex: 0,
+        initialIndex: 1,
         length: 4,
         child: Scaffold(
           appBar: AppBar(
@@ -70,7 +80,10 @@ class _MyHomePageState extends State<MyHomePage> {
               isScrollable: false,
               tabs: [
                 Tab(
-                  icon: Icon(Icons.groups),
+                  icon: Icon(
+                    Icons.groups,
+                    size: 30,
+                  ),
                 ),
                 Tab(
                   text: 'Chats',
@@ -86,7 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           body: TabBarView(
             children: [
-              const Text("Community"),
+              GroupList(deleteConvo: _deleteConversation),
               ConversationList(
                 deleteConvo: _deleteConversation,
               ),
