@@ -3,6 +3,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import './Widgets/chart.dart';
 import './Widgets/new_transaction.dart';
@@ -17,12 +18,40 @@ class HomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePage> createState() {
+    return _HomePageState();
+  }
 }
 
-class _HomePageState extends State<HomePage> {
-  final List<Transaction> userTransactions = [];
+class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   bool _showChart = false;
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addObserver(this);
+    super.initState();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print(state);
+    super.didChangeAppLifecycleState(state);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  final List<Transaction> userTransactions = [
+    Transaction(
+      id: DateFormat.yMd().format(DateTime.now()),
+      tittle: 'New Shoes',
+      amount: 12.999,
+      date: DateTime.now(),
+    ),
+  ];
 
   List<Transaction> get _recentTransactions {
     return userTransactions.where((tx) {
@@ -65,10 +94,63 @@ class _HomePageState extends State<HomePage> {
         });
   }
 
+  List<Widget> _buildLandscapeContent(
+    MediaQueryData mediaQuery,
+    AppBar appBar,
+    Widget txListWidget,
+  ) {
+    return [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            "Show Chart",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
+            ),
+          ),
+          Switch.adaptive(
+            activeColor: Theme.of(context).primaryColor,
+            value: _showChart,
+            onChanged: (value) => {
+              setState(() {
+                _showChart = value;
+              }),
+            },
+          )
+        ],
+      ),
+      _showChart
+          ? SizedBox(
+              height: (mediaQuery.size.height -
+                      appBar.preferredSize.height -
+                      mediaQuery.padding.top) *
+                  0.7,
+              child: Chart(_recentTransactions),
+            )
+          : txListWidget
+    ];
+  }
+
+  List<Widget> _buildPotratitContent(
+      MediaQueryData mediaQuery, AppBar appBar, Widget txListWidget) {
+    return [
+      SizedBox(
+        height: (mediaQuery.size.height -
+                appBar.preferredSize.height -
+                mediaQuery.padding.top) *
+            0.3,
+        child: Chart(_recentTransactions),
+      ),
+      txListWidget,
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
-    final mediaQeury = MediaQuery.of(context);
-    final isLandScape = mediaQeury.orientation == Orientation.landscape;
+    final mediaQuery = MediaQuery.of(context);
+    final isLandScape = mediaQuery.orientation == Orientation.landscape;
 
     final appBar = AppBar(
       elevation: 0,
@@ -92,9 +174,9 @@ class _HomePageState extends State<HomePage> {
     );
 
     final txListWidget = SizedBox(
-      height: (mediaQeury.size.height -
+      height: (mediaQuery.size.height -
               appBar.preferredSize.height -
-              mediaQeury.padding.top) *
+              mediaQuery.padding.top) *
           0.8,
       child: TransactionList(userTransactions, _deleteTransaction),
     );
@@ -106,46 +188,17 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             if (isLandScape)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    "Show Chart",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                    ),
-                  ),
-                  Switch.adaptive(
-                    activeColor: Theme.of(context).primaryColor,
-                    value: _showChart,
-                    onChanged: (value) => {
-                      setState(() {
-                        _showChart = value;
-                      }),
-                    },
-                  )
-                ],
+              ..._buildLandscapeContent(
+                mediaQuery,
+                appBar,
+                txListWidget,
               ),
             if (!isLandScape)
-              SizedBox(
-                height: (mediaQeury.size.height -
-                        appBar.preferredSize.height -
-                        mediaQeury.padding.top) *
-                    0.3,
-                child: Chart(_recentTransactions),
+              ..._buildPotratitContent(
+                mediaQuery,
+                appBar,
+                txListWidget,
               ),
-            if (!isLandScape) txListWidget,
-            if (isLandScape)
-              _showChart
-                  ? SizedBox(
-                      height: (mediaQeury.size.height -
-                              appBar.preferredSize.height -
-                              mediaQeury.padding.top) *
-                          0.7,
-                      child: Chart(_recentTransactions),
-                    )
-                  : txListWidget,
           ],
         ),
       ),

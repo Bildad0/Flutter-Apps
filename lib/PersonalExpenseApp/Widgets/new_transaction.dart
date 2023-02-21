@@ -47,6 +47,24 @@ class _NewTransactionState extends State<NewTransaction> {
   }
 
   @override
+  void initState() {
+    // for data fetching
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // dispose a widget that has been removed on rebuild or cleaning up data
+    super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(covariant NewTransaction oldWidget) {
+    // update the new build widget by comparing with the old one.
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Card(

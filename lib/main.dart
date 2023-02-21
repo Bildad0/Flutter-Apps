@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+import 'MusicApp/music_play_ui.dart';
 import 'PersonalExpenseApp/main.dart';
 import 'WhatsAppCloneApp/screens/home.dart';
 
@@ -36,8 +37,9 @@ class MyApp extends StatelessWidget {
         backgroundColor: Colors.transparent,
         errorColor: Colors.red,
       ),
-      //home: const HomePage(title: 'Personal Expenses App'),
-      home: const MyHomePage(title: 'WhatsApp'),
+      //home: const MusicPlayUI(),
+      home: const HomePage(title: 'Personal Expenses App'),
+      //home: const MyHomePage(title: 'WhatsApp'),
     );
   }
 }

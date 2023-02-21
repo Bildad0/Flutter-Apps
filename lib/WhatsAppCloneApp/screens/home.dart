@@ -20,15 +20,15 @@ class _MyHomePageState extends State<MyHomePage> {
   final List<Conversation> userConversations = [];
 
   //add latest conversation
-  // List<Conversation> get _recentConversations {
-  //   return userConversations.where((element) {
-  //     return element.time.isAfter(
-  //       DateTime.now().subtract(
-  //         const Duration(seconds: 1),
-  //       ),
-  //     );
-  //   }).toList();
-  // }
+  List<Conversation> get _recentConversations {
+    return userConversations.where((element) {
+      return element.time.isAfter(
+        DateTime.now().subtract(
+          const Duration(seconds: 1),
+        ),
+      );
+    }).toList();
+  }
 
   void _deleteConversation(String id) {
     setState(() {
@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Tab(
                   icon: Icon(
                     Icons.groups,
-                    size: 30,
+                    size: 25,
                   ),
                 ),
                 Tab(
@@ -102,14 +102,16 @@ class _MyHomePageState extends State<MyHomePage> {
               GroupList(deleteConvo: _deleteConversation),
               ConversationList(
                 deleteConvo: _deleteConversation,
+                latestConversation: userConversations,
               ),
               const Text("Status"),
               const Text("Calls"),
             ],
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () {},
-            tooltip: 'New Message',
+            onPressed: () {
+              getContact();
+            },
             child: const Icon(
               Icons.messenger_rounded,
               color: Colors.white,

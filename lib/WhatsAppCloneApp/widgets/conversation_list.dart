@@ -5,9 +5,11 @@ import '../models/conversationmodel.dart';
 
 class ConversationList extends StatefulWidget {
   final Function deleteConvo;
+  final List<Conversation> latestConversation;
   const ConversationList({
     Key? key,
     required this.deleteConvo,
+    required this.latestConversation,
   }) : super(key: key);
 
   @override
@@ -18,12 +20,10 @@ class _ConversationListState extends State<ConversationList> {
   //remember to add gesture detector on the card allow longpress function
   @override
   Widget build(BuildContext context) {
-    final List<Conversation> conversations = [];
-
     void onConversationClick() => {
-          print("${conversations[0].sender}"),
+          print("${widget.latestConversation[0].sender}"),
         };
-    return conversations.isEmpty
+    return widget.latestConversation.isEmpty
         ? const Center(
             child: Text(
               "No conversation yet",
@@ -49,14 +49,14 @@ class _ConversationListState extends State<ConversationList> {
                         backgroundColor: Colors.grey,
                         child: FittedBox(
                           child: Image.network(
-                              conversations[index].sender.imageUrl),
+                              widget.latestConversation[index].sender.imageUrl),
                         ),
                       ),
                       title: SizedBox(
-                        child: conversations[index].sender.name.isEmpty
+                        child: widget
+                                .latestConversation[index].sender.name.isEmpty
                             ? Text(
-                                conversations[index]
-                                    .sender
+                                widget.latestConversation[index].sender
                                     .phoneNumber
                                     .toString(),
                                 style: const TextStyle(
@@ -66,7 +66,7 @@ class _ConversationListState extends State<ConversationList> {
                                 ),
                               )
                             : Text(
-                                conversations[index].sender.name,
+                                widget.latestConversation[index].sender.name,
                                 style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.bold,
@@ -77,11 +77,13 @@ class _ConversationListState extends State<ConversationList> {
                       subtitle: Row(
                         children: [
                           Text(
-                            conversations[index].messages.toString(),
+                            widget.latestConversation[index].messages
+                                .toString(),
                             style: const TextStyle(color: Colors.grey),
                           ),
                           Text(
-                            DateFormat.yMd().format(conversations[index].time),
+                            DateFormat.yMd()
+                                .format(widget.latestConversation[index].time),
                             style: const TextStyle(color: Colors.grey),
                           ),
                         ],
@@ -91,7 +93,7 @@ class _ConversationListState extends State<ConversationList> {
                     ),
                   ));
             },
-            itemCount: conversations.length,
+            itemCount: widget.latestConversation.length,
           );
   }
 }
