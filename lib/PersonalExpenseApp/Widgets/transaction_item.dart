@@ -1,9 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../Models/transaction.dart';
 
-class TransactionItem extends StatelessWidget {
+class TransactionItem extends StatefulWidget {
   const TransactionItem({
     Key? key,
     required this.transaction,
@@ -12,6 +14,30 @@ class TransactionItem extends StatelessWidget {
 
   final Transaction transaction;
   final Function deleteTx;
+
+  @override
+  State<TransactionItem> createState() => _TransactionItemState();
+}
+
+class _TransactionItemState extends State<TransactionItem> {
+  late Color _bgColor;
+  @override
+  void initState() {
+    const availableColors = [
+      Colors.red,
+      Colors.blue,
+      Colors.purple,
+      Colors.lightGreenAccent,
+      Colors.blueGrey,
+      Colors.cyan,
+      Colors.deepOrangeAccent,
+      Colors.amber,
+      Colors.brown
+    ];
+
+    _bgColor = availableColors[Random().nextInt(availableColors.length)];
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +50,12 @@ class TransactionItem extends StatelessWidget {
       child: ListTile(
         leading: CircleAvatar(
           radius: 30,
-          backgroundColor: Colors.purple,
+          backgroundColor: _bgColor,
           child: Padding(
             padding: const EdgeInsets.all(6),
             child: FittedBox(
               child: Text(
-                "Ksh ${transaction.amount.toStringAsFixed(2)}",
+                "Ksh ${widget.transaction.amount.toStringAsFixed(2)}",
                 style: const TextStyle(
                   fontSize: 200,
                   fontWeight: FontWeight.bold,
@@ -40,7 +66,7 @@ class TransactionItem extends StatelessWidget {
           ),
         ),
         title: Text(
-          transaction.tittle,
+          widget.transaction.tittle,
           style: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
@@ -48,14 +74,14 @@ class TransactionItem extends StatelessWidget {
           ),
         ),
         subtitle: Text(
-          DateFormat.yMMMMd().format(transaction.date),
+          DateFormat.yMMMMd().format(widget.transaction.date),
           style: const TextStyle(
             color: Colors.grey,
           ),
         ),
         trailing: MediaQuery.of(context).size.width > 720
             ? TextButton.icon(
-                onPressed: () => deleteTx(transaction.id),
+                onPressed: () => widget.deleteTx(widget.transaction.id),
                 icon: Icon(
                   Icons.delete,
                   color: Theme.of(context).errorColor,
@@ -68,7 +94,7 @@ class TransactionItem extends StatelessWidget {
             : IconButton(
                 color: Theme.of(context).errorColor,
                 icon: const Icon(Icons.delete),
-                onPressed: () => deleteTx(transaction.id),
+                onPressed: () => widget.deleteTx(widget.transaction.id),
               ),
       ),
     );
