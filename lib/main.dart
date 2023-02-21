@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import '/MealApp/main.dart';
 
 import 'MusicApp/music_play_ui.dart';
 import 'PersonalExpenseApp/main.dart';
@@ -38,8 +39,9 @@ class MyApp extends StatelessWidget {
         errorColor: Colors.red,
       ),
       //home: const MusicPlayUI(),
-      home: const HomePage(title: 'Personal Expenses App'),
+      //home: const HomePage(title: 'Personal Expenses App'),
       //home: const MyHomePage(title: 'WhatsApp'),
+      home: const MealsApp(title: 'Awuor\'s Cafe'),
     );
   }
 }
