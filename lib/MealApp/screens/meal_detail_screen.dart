@@ -27,7 +27,7 @@ class MealDetailScreen extends StatelessWidget {
       ),
       margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.all(10),
-      height: 200,
+      height: 250,
       width: double.infinity,
       child: child,
     );
@@ -48,7 +48,7 @@ class MealDetailScreen extends StatelessWidget {
             children: [
               SizedBox(
                 width: double.infinity,
-                height: 250,
+                height: 150,
                 child: Image.network(
                   selectedMeal.imageUrl,
                   fit: BoxFit.cover,

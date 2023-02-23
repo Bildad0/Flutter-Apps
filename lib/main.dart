@@ -7,6 +7,7 @@ import '/MealApp/screens/meal_detail_screen.dart';
 import 'MealApp/main.dart';
 import 'MealApp/screens/category_meals_screen.dart';
 import 'MealApp/screens/category_screen.dart';
+import 'MealApp/screens/tabs_screen.dart';
 import 'MusicApp/music_play_ui.dart';
 import 'PersonalExpenseApp/main.dart';
 import 'WhatsAppCloneApp/screens/home.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
 
       initialRoute: '/', //default route
       routes: {
-        '/': (ctx) => const MealsApp(),
+        '/': (ctx) => const TabsScreen(),
         CategoryMealScreen.routeName: (ctx) => const CategoryMealScreen(),
         MealDetailScreen.routeName: (ctx) => const MealDetailScreen(),
       },

@@ -131,7 +131,7 @@ class MealItem extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Text('Ksh $affordabilityText,'),
+                  Text('Ksh $affordabilityText'),
                 ],
               ),
             )

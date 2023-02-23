@@ -143,8 +143,8 @@ const DUMMY_MEALS = [
     ],
     steps: [
       'Form 2 patties',
-      'Fry the patties for c. 4 minutes on each side',
-      'Quickly fry the buns for c. 1 minute on each side',
+      'Fry the patties for some 4 minutes on each side',
+      'Quickly fry the buns for some 1 minute on each side',
       'Bruch buns with ketchup',
       'Serve burger with tomato, cucumber and onion'
     ],
