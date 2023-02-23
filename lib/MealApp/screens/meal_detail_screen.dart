@@ -1,21 +1,59 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import '../resources/dummy_data.dart';
 
-class MealDetailScreen extends StatelessWidget {
+class MealDetailScreen extends StatefulWidget {
   static const routeName = '/meal-detail';
+
   const MealDetailScreen({super.key});
-  Widget buildSectionTitle(BuildContext context, String text) {
+
+  @override
+  State<MealDetailScreen> createState() => _MealDetailScreenState();
+}
+
+class _MealDetailScreenState extends State<MealDetailScreen> {
+  late Color _bgColor;
+  @override
+  void initState() {
+    const availableColors = [
+      Colors.red,
+      Colors.blue,
+      Colors.blueGrey,
+      Colors.cyan,
+      Colors.deepOrangeAccent,
+      Colors.amber,
+      Colors.brown
+    ];
+
+    _bgColor = availableColors[Random().nextInt(availableColors.length)];
+    super.initState();
+  }
+
+  Widget buildSectionTitle(BuildContext context, String text1, String text2) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      child: Text(
-        text,
-        style: const TextStyle(
-          color: Colors.grey,
-          fontSize: 30,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
+        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              text1,
+              style: const TextStyle(
+                color: Colors.grey,
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              text2,
+              style: TextStyle(
+                color: _bgColor.withOpacity(0.7),
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ));
   }
 
   Widget buildContainer(Widget child) {
@@ -36,10 +74,13 @@ class MealDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mealId = ModalRoute.of(context)?.settings.arguments as String;
+
     final selectedMeal = DUMMY_MEALS.firstWhere((meal) => meal.id == mealId);
+
     return Scaffold(
         appBar: AppBar(
           elevation: 0,
+          backgroundColor: _bgColor,
           scrolledUnderElevation: 8,
           title: Text(selectedMeal.title),
         ),
@@ -54,12 +95,13 @@ class MealDetailScreen extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-              buildSectionTitle(context, "Ingridients"),
+              buildSectionTitle(
+                  context, "Ingridients", "Time: ${selectedMeal.duration} min"),
               buildContainer(
                 ListView.builder(
                   itemBuilder: ((context, index) {
                     return Card(
-                      color: Colors.yellow,
+                      color: _bgColor.withOpacity(0.4),
                       elevation: 0,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
@@ -67,8 +109,11 @@ class MealDetailScreen extends StatelessWidget {
                           horizontal: 10,
                         ),
                         child: Text(
-                          selectedMeal.ingredients[index],
-                          style: const TextStyle(color: Colors.black),
+                          "${index + 1}).  ${selectedMeal.ingredients[index]}",
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     );
@@ -76,14 +121,22 @@ class MealDetailScreen extends StatelessWidget {
                   itemCount: selectedMeal.ingredients.length,
                 ),
               ),
-              buildSectionTitle(context, "Steps"),
+              buildSectionTitle(
+                context,
+                "Steps",
+                "",
+              ),
               buildContainer(
                 ListView.builder(
                   itemBuilder: ((context, index) {
                     return Column(children: [
                       ListTile(
                         leading: CircleAvatar(
-                          child: Text("${index + 1}"),
+                          backgroundColor: _bgColor,
+                          child: Text(
+                            "${index + 1}",
+                            style: const TextStyle(color: Colors.white),
+                          ),
                         ),
                         title: Text(selectedMeal.steps[index]),
                       ),
@@ -93,6 +146,9 @@ class MealDetailScreen extends StatelessWidget {
                   itemCount: selectedMeal.steps.length,
                 ),
               ),
+              const SizedBox(
+                height: 30,
+              )
             ],
           ),
         ));

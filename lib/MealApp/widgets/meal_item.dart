@@ -111,27 +111,46 @@ class MealItem extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      const Icon(Icons.schedule),
+                      Icon(
+                        Icons.schedule,
+                        color: Theme.of(context).primaryColor,
+                      ),
                       const SizedBox(
                         width: 6,
                       ),
                       Text(
                         '$duration min',
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                        ),
                       ),
                     ],
                   ),
                   Row(
                     children: [
-                      const Icon(Icons.work),
+                      Icon(
+                        Icons.work,
+                        color: Theme.of(context).primaryColor,
+                      ),
                       const SizedBox(
                         width: 6,
                       ),
                       Text(
                         complexityText,
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                        ),
                       ),
                     ],
                   ),
-                  Text('Ksh $affordabilityText'),
+                  Text(
+                    'Cost: Ksh $affordabilityText',
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                    ),
+                  ),
                 ],
               ),
             )

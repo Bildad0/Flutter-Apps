@@ -4,10 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '/MealApp/screens/meal_detail_screen.dart';
 
-import 'MealApp/main.dart';
 import 'MealApp/screens/category_meals_screen.dart';
 import 'MealApp/screens/category_screen.dart';
-import 'MealApp/screens/tabs_screen.dart';
+import 'MealApp/screens/main_screen.dart';
 import 'MusicApp/music_play_ui.dart';
 import 'PersonalExpenseApp/main.dart';
 import 'WhatsAppCloneApp/screens/home.dart';
