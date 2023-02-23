@@ -43,13 +43,13 @@ class MealItem extends StatelessWidget {
   String get affordabilityText {
     switch (affordability) {
       case Affordability.affordable:
-        return 'Affordable';
+        return '3,000';
       case Affordability.pricey:
-        return 'Costly';
+        return '6,000';
       case Affordability.luxurious:
-        return 'Expensive';
+        return '12,000';
       default:
-        return 'Unknown';
+        return 'Bonus';
     }
   }
 
@@ -131,17 +131,7 @@ class MealItem extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Row(
-                    children: [
-                      const Icon(Icons.attach_money),
-                      const SizedBox(
-                        width: 6,
-                      ),
-                      Text(
-                        affordabilityText,
-                      ),
-                    ],
-                  ),
+                  Text('Ksh $affordabilityText,'),
                 ],
               ),
             )

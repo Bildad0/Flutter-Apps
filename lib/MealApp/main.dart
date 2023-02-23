@@ -16,7 +16,7 @@ class _MealsAppState extends State<MealsApp> {
       appBar: AppBar(
         elevation: 0,
         scrolledUnderElevation: 8,
-        title: const Text('Awuor\'s Cafe'),
+        title: const Text('Menu'),
       ),
       body: const CategoriesScreen(),
     );
