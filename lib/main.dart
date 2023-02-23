@@ -1,10 +1,12 @@
 // ignore_for_file: unused_import
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import '/MealApp/main.dart';
+import '/MealApp/screens/meal_detail_screen.dart';
 
+import 'MealApp/main.dart';
+import 'MealApp/screens/category_meals_screen.dart';
+import 'MealApp/screens/category_screen.dart';
 import 'MusicApp/music_play_ui.dart';
 import 'PersonalExpenseApp/main.dart';
 import 'WhatsAppCloneApp/screens/home.dart';
@@ -13,12 +15,6 @@ Future<void> main() async {
   await dotenv.load();
 
   WidgetsFlutterBinding.ensureInitialized();
-
-  //to set specific orientation for your App.
-  // SystemChrome.setPreferredOrientations([
-  //   DeviceOrientation.portraitUp,
-  //   DeviceOrientation.portraitDown,
-  // ]);
 
   runApp(const MyApp());
 }
@@ -41,7 +37,16 @@ class MyApp extends StatelessWidget {
       //home: const MusicPlayUI(),
       //home: const HomePage(title: 'Personal Expenses App'),
       //home: const MyHomePage(title: 'WhatsApp'),
-      home: const MealsApp(title: 'Awuor\'s Cafe'),
+
+      initialRoute: '/', //default route
+      routes: {
+        '/': (ctx) => const MealsApp(),
+        CategoryMealScreen.routeName: (ctx) => const CategoryMealScreen(),
+        MealDetailScreen.routeName: (ctx) => const MealDetailScreen(),
+      },
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(builder: (ctx) => const CategoriesScreen());
+      },
     );
   }
 }

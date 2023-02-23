@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 import 'screens/category_screen.dart';
 
 class MealsApp extends StatefulWidget {
-  const MealsApp({
-    Key? key,
-    required this.title,
-  }) : super(key: key);
-  final String title;
+  const MealsApp({super.key});
+
   @override
   State<MealsApp> createState() => _MealsAppState();
 }
@@ -17,7 +14,9 @@ class _MealsAppState extends State<MealsApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        elevation: 0,
+        scrolledUnderElevation: 8,
+        title: const Text('Awuor\'s Cafe'),
       ),
       body: const CategoriesScreen(),
     );
