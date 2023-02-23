@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/main_drawer.dart';
 import './favourite_screen.dart';
 import './category_screen.dart';
 
@@ -30,14 +31,15 @@ class _TabsScreenState extends State<TabsScreen> {
         elevation: 0,
         scrolledUnderElevation: 5,
       ),
+      drawer: const MainDrawer(),
       body: _pages[_selectedPageIndex]['page'] as Widget,
       bottomNavigationBar: BottomNavigationBar(
         elevation: 0,
         currentIndex: _selectedPageIndex,
         onTap: _selectPage,
+        backgroundColor: Theme.of(context).primaryColor,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.yellowAccent,
-        type: BottomNavigationBarType.shifting,
         items: [
           BottomNavigationBarItem(
             backgroundColor: Theme.of(context).primaryColor,

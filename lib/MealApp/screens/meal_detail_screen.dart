@@ -17,11 +17,11 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
   @override
   void initState() {
     const availableColors = [
-      Colors.red,
+      Color.fromARGB(196, 220, 148, 142),
       Colors.blue,
       Colors.blueGrey,
       Colors.cyan,
-      Colors.deepOrangeAccent,
+      Color.fromARGB(255, 214, 148, 128),
       Colors.amber,
       Colors.brown
     ];
@@ -78,79 +78,91 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
     final selectedMeal = DUMMY_MEALS.firstWhere((meal) => meal.id == mealId);
 
     return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: _bgColor,
-          scrolledUnderElevation: 8,
-          title: Text(selectedMeal.title),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                width: double.infinity,
-                height: 150,
-                child: Image.network(
-                  selectedMeal.imageUrl,
-                  fit: BoxFit.cover,
-                ),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: _bgColor,
+        scrolledUnderElevation: 8,
+        title: Text(selectedMeal.title),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              width: double.infinity,
+              height: 150,
+              child: Image.network(
+                selectedMeal.imageUrl,
+                fit: BoxFit.cover,
               ),
-              buildSectionTitle(
-                  context, "Ingridients", "Time: ${selectedMeal.duration} min"),
-              buildContainer(
-                ListView.builder(
-                  itemBuilder: ((context, index) {
-                    return Card(
-                      color: _bgColor.withOpacity(0.4),
-                      elevation: 0,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 5,
-                          horizontal: 10,
+            ),
+            buildSectionTitle(
+                context, "Ingridients", "Time: ${selectedMeal.duration} min"),
+            buildContainer(
+              ListView.builder(
+                itemBuilder: ((context, index) {
+                  return Card(
+                    color: _bgColor.withOpacity(0.4),
+                    elevation: 0,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 5,
+                        horizontal: 10,
+                      ),
+                      child: Text(
+                        "${index + 1}).  ${selectedMeal.ingredients[index]}",
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
                         ),
+                      ),
+                    ),
+                  );
+                }),
+                itemCount: selectedMeal.ingredients.length,
+              ),
+            ),
+            buildSectionTitle(
+              context,
+              "Preparation Steps",
+              "",
+            ),
+            buildContainer(
+              ListView.builder(
+                itemBuilder: ((context, index) {
+                  return Column(children: [
+                    ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: _bgColor,
                         child: Text(
-                          "${index + 1}).  ${selectedMeal.ingredients[index]}",
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          "${index + 1}",
+                          style: const TextStyle(color: Colors.white),
                         ),
                       ),
-                    );
-                  }),
-                  itemCount: selectedMeal.ingredients.length,
-                ),
+                      title: Text(selectedMeal.steps[index]),
+                    ),
+                    const Divider(),
+                  ]);
+                }),
+                itemCount: selectedMeal.steps.length,
               ),
-              buildSectionTitle(
-                context,
-                "Steps",
-                "",
-              ),
-              buildContainer(
-                ListView.builder(
-                  itemBuilder: ((context, index) {
-                    return Column(children: [
-                      ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor: _bgColor,
-                          child: Text(
-                            "${index + 1}",
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                        ),
-                        title: Text(selectedMeal.steps[index]),
-                      ),
-                      const Divider(),
-                    ]);
-                  }),
-                  itemCount: selectedMeal.steps.length,
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              )
-            ],
-          ),
-        ));
+            ),
+            const SizedBox(
+              height: 30,
+            )
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: _bgColor,
+        child: Icon(
+          Icons.delete,
+          size: 30,
+          color: Theme.of(context).errorColor,
+        ),
+        onPressed: () {
+          Navigator.of(context).pop(mealId);
+        },
+      ),
+    );
   }
 }
