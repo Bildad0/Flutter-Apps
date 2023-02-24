@@ -1,12 +1,18 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+
 import '../resources/dummy_data.dart';
 
 class MealDetailScreen extends StatefulWidget {
   static const routeName = '/meal-detail';
-
-  const MealDetailScreen({super.key});
+  final Function toggleFavorite;
+  final Function isFavorite;
+  const MealDetailScreen({
+    Key? key,
+    required this.toggleFavorite,
+    required this.isFavorite,
+  }) : super(key: key);
 
   @override
   State<MealDetailScreen> createState() => _MealDetailScreenState();
@@ -17,13 +23,13 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
   @override
   void initState() {
     const availableColors = [
-      Color.fromARGB(196, 220, 148, 142),
+      Color.fromARGB(196, 196, 150, 145),
       Colors.blue,
       Colors.blueGrey,
       Colors.cyan,
-      Color.fromARGB(255, 214, 148, 128),
-      Colors.amber,
-      Colors.brown
+      Color.fromARGB(255, 255, 82, 30),
+      Color.fromARGB(255, 123, 104, 46),
+      Color.fromARGB(255, 126, 97, 87)
     ];
 
     _bgColor = availableColors[Random().nextInt(availableColors.length)];
@@ -48,6 +54,7 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
               text2,
               style: TextStyle(
                 color: _bgColor.withOpacity(0.7),
+                backgroundColor: Colors.white,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
@@ -78,9 +85,11 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
     final selectedMeal = DUMMY_MEALS.firstWhere((meal) => meal.id == mealId);
 
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: _bgColor,
+        backgroundColor: Theme.of(context).primaryColor.withOpacity(0.3),
+        foregroundColor: Theme.of(context).primaryColor,
         scrolledUnderElevation: 8,
         title: Text(selectedMeal.title),
       ),
@@ -153,14 +162,14 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: _bgColor,
+        backgroundColor: _bgColor.withOpacity(.8),
         child: Icon(
-          Icons.delete,
+          widget.isFavorite(mealId) ? Icons.star : Icons.star_border,
           size: 30,
-          color: Theme.of(context).errorColor,
+          color: Colors.yellow,
         ),
         onPressed: () {
-          Navigator.of(context).pop(mealId);
+          widget.toggleFavorite(mealId);
         },
       ),
     );

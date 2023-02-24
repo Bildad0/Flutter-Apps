@@ -28,19 +28,23 @@ class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      width: 250,
+      elevation: 0,
+      backgroundColor: Theme.of(context).backgroundColor,
       child: Column(
         children: [
           Container(
-            color: Theme.of(context).primaryColor.withOpacity(0.3),
+            color: Theme.of(context).primaryColor.withOpacity(0.4),
             height: 120,
             width: double.infinity,
             padding: const EdgeInsets.all(20),
             alignment: Alignment.centerLeft,
             child: Text(
-              "Cooking Up!",
+              "Awuor's Cafe",
               style: TextStyle(
                 fontWeight: FontWeight.w900,
                 fontSize: 26,
+                fontStyle: FontStyle.italic,
                 color: Theme.of(context).primaryColor,
               ),
             ),

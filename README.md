@@ -1,31 +1,30 @@
 # Flutter Apps
 
-A collection of Flutter Apps
+This is a collection of different flutter apps.
+The Apps ranges from:-
+
+1. Recepie app.
+2. Music Play UI.
+3. Personal Expenses App.
+4. WhatsApp clone.
 
 ## Getting Started
 
-To run different app, comment out from main.dart
+To run different app, comment out any initial route component to get the respective App from main.dart
 
-## Home:const HomePage(title: 'Personal Expenses App')
+## Main.dart file
 
-Then run
+```Flutter
+        '/': (ctx) => const TabsScreen(),
+        '/': (ctx) => const MusicPlayUI(),
+        '/': (ctx) => const HomePage(title: 'Personal Expenses'),
+        '/': (ctx) => const MyHomePage(title: 'WhatsApp'),
+```
+
+Then execute:
 
 ```Bash:
 Flutter run
 ```
 
-```Flutter
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Personal Expenses',
-      theme: ThemeData(
-        secondaryHeaderColor: const Color.fromARGB(255, 87, 157, 90),
-        primarySwatch: Colors.purple,
-        backgroundColor: Colors.transparent,
-        errorColor: Colors.red,
-      ),
-      home: const HomePage(title: 'Personal Expenses App'),
-      //home: const MyHomePage(title: 'WhatsApp'),
-    );
-  }
-```
+## Thank you[!]
