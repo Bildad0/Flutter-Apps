@@ -25,6 +25,59 @@ class MainDrawer extends StatelessWidget {
   //   );
   // }
 
+  Widget buildTop(context, IconData icon, String text) {
+    return Container(
+      color: Theme.of(context).primaryColor.withOpacity(0.4),
+      height: 120,
+      width: double.infinity,
+      padding: const EdgeInsets.all(20),
+      alignment: Alignment.bottomCenter,
+      child: Column(children: [
+        Icon(
+          icon,
+          color: Theme.of(context).primaryColor,
+          size: 30,
+        ),
+        Text(
+          text,
+          style: TextStyle(
+            fontWeight: FontWeight.w900,
+            fontSize: 26,
+            fontStyle: FontStyle.italic,
+            color: Theme.of(context).primaryColor,
+          ),
+        ),
+      ]),
+    );
+  }
+
+  Widget buildBottomContainer(context, IconData icon, String text) {
+    return Container(
+      margin: const EdgeInsets.fromLTRB(30, 5, 20, 10),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Icon(
+            icon,
+            size: 20,
+            color: Theme.of(context).primaryColor,
+          ),
+          const SizedBox(
+            width: 5,
+          ),
+          Text(
+            text,
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -33,22 +86,7 @@ class MainDrawer extends StatelessWidget {
       backgroundColor: Theme.of(context).backgroundColor,
       child: Column(
         children: [
-          Container(
-            color: Theme.of(context).primaryColor.withOpacity(0.4),
-            height: 120,
-            width: double.infinity,
-            padding: const EdgeInsets.all(20),
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "Awuor's Cafe",
-              style: TextStyle(
-                fontWeight: FontWeight.w900,
-                fontSize: 26,
-                fontStyle: FontStyle.italic,
-                color: Theme.of(context).primaryColor,
-              ),
-            ),
-          ),
+          buildTop(context, Icons.hotel_class_outlined, "The Cafe"),
           const SizedBox(
             height: 20,
           ),
@@ -88,6 +126,14 @@ class MainDrawer extends StatelessWidget {
               Navigator.of(context)
                   .pushReplacementNamed(FilterScreen.routeName);
             },
+          ),
+          Expanded(
+            child: Column(),
+          ),
+          buildBottomContainer(
+            context,
+            Icons.info_outline_rounded,
+            "Made in Africa",
           ),
         ],
       ),

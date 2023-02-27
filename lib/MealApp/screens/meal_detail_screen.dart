@@ -144,7 +144,9 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
                         backgroundColor: _bgColor,
                         child: Text(
                           "${index + 1}",
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                       title: Text(selectedMeal.steps[index]),
