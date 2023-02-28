@@ -14,7 +14,7 @@ To run different app, comment out any initial route component to get the respect
 
 ## Main.dart file
 
-```Flutter
+```Dart
  '/': (ctx) => const TabsScreen(),
  '/': (ctx) => const MusicPlayUI(),
  '/': (ctx) => const HomePage(title: 'Personal Expenses'),
@@ -23,8 +23,8 @@ To run different app, comment out any initial route component to get the respect
 
 Then execute:
 
-```Bash:
+```bash:
 Flutter run
 ```
 
-## Thank you!
+## Thank you
