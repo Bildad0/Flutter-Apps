@@ -45,7 +45,6 @@ class _CategoryMealScreenState extends State<CategoryMealScreen> {
         backgroundColor: Theme.of(context).primaryColor.withOpacity(0.3),
         foregroundColor: Theme.of(context).primaryColor,
         elevation: 0,
-        scrolledUnderElevation: 8,
         title: Text(
           categoryTitle,
           style: TextStyle(color: Theme.of(context).primaryColor),

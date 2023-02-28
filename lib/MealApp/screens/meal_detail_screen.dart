@@ -90,7 +90,6 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
         elevation: 0,
         backgroundColor: Theme.of(context).primaryColor.withOpacity(0.3),
         foregroundColor: Theme.of(context).primaryColor,
-        scrolledUnderElevation: 8,
         title: Text(selectedMeal.title),
       ),
       body: SingleChildScrollView(

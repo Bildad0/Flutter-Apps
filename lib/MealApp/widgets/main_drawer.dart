@@ -133,7 +133,7 @@ class MainDrawer extends StatelessWidget {
           buildBottomContainer(
             context,
             Icons.info_outline_rounded,
-            "Made in Africa",
+            "Made in Africa by African",
           ),
         ],
       ),

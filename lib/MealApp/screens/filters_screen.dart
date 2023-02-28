@@ -156,15 +156,6 @@ class _FilterScreenState extends State<FilterScreen> {
                 margin: const EdgeInsets.fromLTRB(30, 5, 20, 350),
                 child: TextButton(
                   onPressed: () {
-                    final selectedFilters = {
-                      'gluten': _glutenFree,
-                      'lactose': _lactoseFree,
-                      'vegan': _vegan,
-                      'vegetarian': _vegetarian
-                    };
-
-                    widget.saveFilters(selectedFilters);
-
                     //TODO work on the alertBox widget.
                     showDialog<String>(
                       context: context,
@@ -195,8 +186,18 @@ class _FilterScreenState extends State<FilterScreen> {
                             child: const Text('NO'),
                           ),
                           TextButton(
-                            onPressed: () => Navigator.of(context)
-                                .popAndPushNamed(TabsScreen.routeName),
+                            onPressed: () {
+                              final selectedFilters = {
+                                'gluten': _glutenFree,
+                                'lactose': _lactoseFree,
+                                'vegan': _vegan,
+                                'vegetarian': _vegetarian
+                              };
+
+                              widget.saveFilters(selectedFilters);
+                              Navigator.of(context)
+                                  .pushReplacementNamed(TabsScreen.routeName);
+                            },
                             child: const Text('YES'),
                           ),
                         ],

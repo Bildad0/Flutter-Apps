@@ -43,7 +43,6 @@ class _TabsScreenState extends State<TabsScreen> {
         foregroundColor: Theme.of(context).primaryColor,
         title: Text(_pages[_selectedPageIndex]['title'] as String),
         elevation: 0,
-        scrolledUnderElevation: 5,
       ),
       drawer: const MainDrawer(),
       body: _pages[_selectedPageIndex]['page'] as Widget,
