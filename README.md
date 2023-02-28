@@ -3,7 +3,7 @@
 This is a collection of different flutter apps.
 The Apps ranges from:-
 
-1. Recepie app.
+1. Recepi app.
 2. Music Play UI.
 3. Personal Expenses App.
 4. WhatsApp clone.
@@ -15,10 +15,10 @@ To run different app, comment out any initial route component to get the respect
 ## Main.dart file
 
 ```Flutter
-        '/': (ctx) => const TabsScreen(),
-        '/': (ctx) => const MusicPlayUI(),
-        '/': (ctx) => const HomePage(title: 'Personal Expenses'),
-        '/': (ctx) => const MyHomePage(title: 'WhatsApp'),
+ '/': (ctx) => const TabsScreen(),
+ '/': (ctx) => const MusicPlayUI(),
+ '/': (ctx) => const HomePage(title: 'Personal Expenses'),
+ '/': (ctx) => const MyHomePage(title: 'WhatsApp'),
 ```
 
 Then execute:
@@ -27,4 +27,4 @@ Then execute:
 Flutter run
 ```
 
-## Thank you[!]
+## Thank you!
