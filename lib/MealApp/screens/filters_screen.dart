@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
-import '../widgets/alert.dart';
 
 import '../widgets/main_drawer.dart';
+import 'main_screen.dart';
 
 class FilterScreen extends StatefulWidget {
   const FilterScreen({
@@ -164,11 +164,43 @@ class _FilterScreenState extends State<FilterScreen> {
                     };
 
                     widget.saveFilters(selectedFilters);
-                    //TODO work on the alertBox.
-                    alertBox(
-                      context,
-                      Icons.info_outline,
-                      'Filters $selectedFilters saved',
+
+                    //TODO work on the alertBox widget.
+                    showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Text(
+                          'Confirm',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        content: const Text(
+                          "Do you want to continue with the changes made ?",
+                          style: TextStyle(
+                            textBaseline: TextBaseline.ideographic,
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                        elevation: 8,
+                        backgroundColor: Theme.of(context).backgroundColor,
+                        iconColor: Theme.of(context).primaryColor,
+                        contentTextStyle: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontStyle: FontStyle.italic,
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: const Text('NO'),
+                          ),
+                          TextButton(
+                            onPressed: () => Navigator.of(context)
+                                .popAndPushNamed(TabsScreen.routeName),
+                            child: const Text('YES'),
+                          ),
+                        ],
+                      ),
                     );
                   },
                   child: const Text(

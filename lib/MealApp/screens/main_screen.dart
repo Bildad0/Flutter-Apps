@@ -13,6 +13,7 @@ class TabsScreen extends StatefulWidget {
     required this.favoriteMeals,
   }) : super(key: key);
   final List<Meal> favoriteMeals;
+  static const routeName = '/';
   @override
   State<TabsScreen> createState() => _TabsScreenState();
 }

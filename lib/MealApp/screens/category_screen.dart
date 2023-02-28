@@ -5,6 +5,8 @@ import '../resources/dummy_data.dart';
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
 
+  static const routeName = "/categories";
+
   @override
   Widget build(BuildContext context) {
     return GridView(

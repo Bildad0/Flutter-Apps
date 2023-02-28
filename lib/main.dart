@@ -114,6 +114,7 @@ class _MyAppState extends State<MyApp> {
               currentFilters: _filters,
               saveFilters: _setFilters,
             ),
+        CategoriesScreen.routeName: (ctx) => const CategoriesScreen(),
       },
       onUnknownRoute: (settings) {
         return MaterialPageRoute(builder: (ctx) => const CategoriesScreen());
