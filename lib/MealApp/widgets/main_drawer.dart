@@ -4,27 +4,6 @@ import '../screens/filters_screen.dart';
 class MainDrawer extends StatelessWidget {
   const MainDrawer({super.key});
 
-  // Widget builListTile(String title, IconData icon, Function tapHandler) {
-  //   return ListTile(
-  //     leading: Icon(
-  //       icon,
-  //       size: 26,
-  //       color: Colors.purple,
-  //     ),
-  //     title: Text(
-  //       title,
-  //       style: const TextStyle(
-  //         color: Colors.purple,
-  //         fontSize: 20,
-  //         fontWeight: FontWeight.bold,
-  //       ),
-  //     ),
-  //     onTap: () {
-  //       tapHandler;
-  //     },
-  //   );
-  // }
-
   Widget buildTop(context, IconData icon, String text) {
     return Container(
       color: Theme.of(context).primaryColor.withOpacity(0.4),
