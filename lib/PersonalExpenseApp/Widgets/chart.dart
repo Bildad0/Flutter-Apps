@@ -48,24 +48,24 @@ class Chart extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: groupedTransactionValues.map((data) {
-            return Flexible(
-              fit: FlexFit.tight,
-              child: ChartBar(
-                  data['day'] as String,
-                  data['amount'] as double,
-                  maxSpending == 0.0
-                      ? 0.0
-                      : (data['amount'] as double) / maxSpending),
-            );
             // return Flexible(
             //   fit: FlexFit.tight,
-            //   child: Text(
-            //     "${data['day']}:Ksh ${data['amount']}",
-            //     style: const TextStyle(
-            //       fontWeight: FontWeight.bold,
-            //     ),
-            //   ),
+            //   child: ChartBar(
+            //       data['day'] as String,
+            //       data['amount'] as double,
+            //       maxSpending == 0.0
+            //           ? 0.0
+            //           : (data['amount'] as double) / maxSpending),
             // );
+            return Flexible(
+              fit: FlexFit.tight,
+              child: Text(
+                "${data['day']}:Ksh ${data['amount']}",
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            );
           }).toList(),
         ),
       ),
