@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 
+import '../../main.dart';
 import '../widgets/main_drawer.dart';
 import 'main_screen.dart';
 
@@ -37,7 +38,7 @@ class _FilterScreenState extends State<FilterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: backgroundColor,
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor.withOpacity(0.3),
         foregroundColor: Theme.of(context).primaryColor,

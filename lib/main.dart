@@ -1,7 +1,6 @@
 // ignore_for_file: unused_import, prefer_final_fields
 
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'MealApp/models/meal.dart';
 import 'MealApp/resources/dummy_data.dart';
@@ -15,8 +14,6 @@ import 'PersonalExpenseApp/main.dart';
 import 'WhatsAppCloneApp/screens/home.dart';
 
 Future<void> main() async {
-  await dotenv.load();
-
   WidgetsFlutterBinding.ensureInitialized();
 
   runApp(const MyApp());
@@ -92,8 +89,6 @@ class _MyAppState extends State<MyApp> {
 
         secondaryHeaderColor: const Color.fromARGB(255, 87, 157, 90),
         primarySwatch: Colors.purple,
-        backgroundColor: const Color.fromARGB(255, 189, 209, 209),
-        errorColor: Colors.red,
       ),
       initialRoute: '/', //default route
       routes: {
@@ -122,3 +117,6 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+
+const backgroundColor = Color.fromARGB(255, 189, 209, 209);
+const errorColor = Colors.red;

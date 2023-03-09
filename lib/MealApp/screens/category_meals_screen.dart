@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../main.dart';
 import '../models/meal.dart';
 import '../widgets/meal_item.dart';
 
@@ -40,7 +41,7 @@ class _CategoryMealScreenState extends State<CategoryMealScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: backgroundColor,
       appBar: AppBar(
         backgroundColor: Theme.of(context).primaryColor.withOpacity(0.3),
         foregroundColor: Theme.of(context).primaryColor,
